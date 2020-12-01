@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
 import './App.css';
+import UserInput from "./UserInput";
+import UserOutput from "./UserOutput";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	
+	const [userName, setUserName] = useState({
+		person: [
+			{name: "Krishna"}
+		]
+	});
+
+	const changeNamehandler = (event) => {
+		console.log("inside input change handler");
+		setUserName({
+			person: [
+				{name: event.target.value}
+			]
+		});
+	}
+
+	// const changeUsernameHandler = (event) => {
+	// 	alert("inside handler");
+	// 	setUserName({
+	// 		userName: "KT"
+	// 	});
+	// }
+
+	return (
+		<div className="App">
+			<UserInput changed={changeNamehandler} name={userName.person[0].name}/>
+			<UserOutput paraNum={1} name={userName.person[0].name}/>
+			<UserOutput paraNum={2} name={userName.person[0].name}/>
+			<UserOutput paraNum={3} name="K"/>
+		</div>
+	);
 }
 
 export default App;
